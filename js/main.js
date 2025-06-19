@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const newFeedback = {
-        id: Date.now(), // único
+        id: Date.now(), 
         title,
         category,
         description,
@@ -220,7 +220,7 @@ function updateRoadmapView() {
 
       const upvoteBtn = card.querySelector(".upvote-btn");
       upvoteBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // ← evita que se dispare showDetailView al votar
+        e.stopPropagation(); //evita que se dispare showDetailView al votar
         req.upvotes++;
         upvoteBtn.querySelector("span").textContent = req.upvotes;
         saveToLocalStorage();
@@ -389,7 +389,7 @@ function activateReplyEvents(scope) {
       document.querySelector(".comment-count").textContent = `💬 ${totalComments}`;
       document.querySelector(".comments-title").textContent = `${totalComments} Comments`;
 
-      // volver a activar los listeners
+      
       activateReplyEvents(document.getElementById("detail-container"), feedbackId);
 
 
