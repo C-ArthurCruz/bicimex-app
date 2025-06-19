@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Feedback App</title>
+      <link rel="stylesheet" href="css/styles.css" />
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+
+      <div id="layout">
+        <div id="sidebar">
+          <div class="logo-box">
+            <h1>Frontend Mentor</h1>
+            <h2>Feedback Board</h2>
+          </div>
+
+          <div id="category-buttons" class="category-box">
+            <button data-category="All">All</button>
+            <button data-category="ui">UI</button>
+            <button data-category="ux">UX</button>
+            <button data-category="enhancement">Enhancement</button>
+            <button data-category="bug">Bug</button>
+            <button data-category="feature">Feature</button>
+          </div>
+
+          <div class="roadmap-box">
+            <div class="roadmap-header">
+              <span>Roadmap</span>
+              <button id="view-roadmap">View</button>
+            </div>
+            <ul>
+              <li>
+                <span class="label"><span class="status-dot planned"></span> Planned</span>
+                <span id="count-planned"></span>
+              </li>
+              <li>
+                <span class="label"><span class="status-dot in-progress"></span> In-Progress</span>
+                <span id="count-inprogress"></span>
+              </li>
+              <li>
+                <span class="label"><span class="status-dot live"></span> Live</span>
+                <span id="count-live"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <main>
+          <div id="main-view">
+            <div class="top-bar">
+              <h2><span id="suggestions-count">0</span> Suggestions</h2>
+              <label for="sort-select">Sort by:</label>
+              <select id="sort-options">
+                <option value="most-upvotes">Most Upvotes</option>
+                <option value="least-upvotes">Least Upvotes</option>
+                <option value="most-comments">Most Comments</option>
+                <option value="least-comments">Least Comments</option>
+              </select>
+              <button id="add-feedback">+ Add Feedback</button>
+            </div>
+
+            <div id="feedback-list"></div>
+          </div>
+
+          
+
+          
+        </main>
+
+        
+      </div>
+
+
+      <div id="roadmap-view" style="display:none;">
+            <div class="roadmap-header-bar">
+              <button id="back-to-main"> < Go Back</button>
+              <h3>Roadmap</h3>
+              <button id="add-feedback">+ Add Feedback</button>
+            </div>
+            <div class="roadmap-columns">
+              <div class="column" id="planned-column">
+                <h3>Planned (<span id="planned-total">0</span>)</h3>
+                <p>Ideas prioritized for research</p>
+                <div class="cards"></div>
+              </div>
+              <div class="column" id="inprogress-column">
+                <h3>In-Progress (<span id="inprogress-total">0</span>)</h3>
+                <p>Currently being developed</p>
+                <div class="cards"></div>
+              </div>
+              <div class="column" id="live-column">
+                <h3>Live (<span id="live-total">0</span>)</h3>
+                <p>Released features</p>
+                <div class="cards"></div>
+              </div>
+            </div>
+          </div>
+
+      <div id="feedback-form-view" class="form-container hidden">
+        <div class="form-header">
+          <button id="go-back-form" class="back-btn">← Go Back</button>
+        </div>
+        <div class="form-box">
+          <h2>Create New Feedback</h2>
+
+          <label for="feedback-title">Feedback Title</label>
+          <p class="input-hint">Add a short, descriptive headline</p>
+          <input type="text" id="feedback-title" placeholder="e.g. Add dark mode option" />
+
+          <label for="feedback-category">Category</label>
+          <p class="input-hint">Choose a category for your feedback</p>
+          <select id="feedback-category">
+            <option value="feature">Feature</option>
+            <option value="ui">UI</option>
+            <option value="ux">UX</option>
+            <option value="enhancement">Enhancement</option>
+            <option value="bug">Bug</option>
+          </select>
+
+          <label for="feedback-detail">Feedback Detail</label>
+          <p class="input-hint">Include any specific comments on what should be improved, added, etc.</p>
+          <textarea id="feedback-detail" placeholder="Enter your suggestion here"></textarea>
+          <p class="error-message hidden">Can’t be empty</p>
+
+          <div class="form-actions">
+            <button id="cancel-feedback" class="btn cancel">Cancel</button>
+            <button id="submit-feedback" class="btn add">Add Feedback</button>
+          </div>
+        </div>
+      </div>
+
+
+        <div id="detail-view" class="hidden">
+          <button id="go-back">← Go Back</button>
+          <button id="edit-feedback" class="edit-btn">Edit Feedback</button>
+          <div id="detail-container"></div>
+        </div>
+
+
+        <div id="edit-feedback-view" class="form-container hidden">
+          <div class="form-header">
+            <button id="edit-go-back" class="back-btn">← Go Back</button>
+          </div>
+          <div class="form-box">
+            <h2 id="edit-title">Editing ''</h2>
+
+            <label for="edit-feedback-title">Feedback Title</label>
+            <p class="input-hint">Add a short, descriptive headline</p>
+            <input type="text" id="edit-feedback-title" />
+
+            <label for="edit-feedback-category">Category</label>
+            <p class="input-hint">Choose a category for your feedback</p>
+            <select id="edit-feedback-category">
+              <option value="feature">Feature</option>
+              <option value="ui">UI</option>
+              <option value="ux">UX</option>
+              <option value="enhancement">Enhancement</option>
+              <option value="bug">Bug</option>
+            </select>
+
+            <label for="edit-feedback-status">Update Status</label>
+            <p class="input-hint">Change feature state</p>
+            <select id="edit-feedback-status">
+              <option value="suggestion">Suggestion</option>
+              <option value="planned">Planned</option>
+              <option value="in-progress">In-Progress</option>
+              <option value="live">Live</option>
+            </select>
+
+            <label for="edit-feedback-detail">Feedback Detail</label>
+            <p class="input-hint">Include any specific comments on what should be improved, added, etc.</p>
+            <textarea id="edit-feedback-detail"></textarea>
+
+            <div class="form-actions">
+              <button id="delete-feedback" class="btn delete">Delete</button>
+              <button id="edit-cancel" class="btn cancel">Cancel</button>
+              <button id="save-feedback" class="btn add">Save Changes</button>
+            </div>
+          </div>
+        </div>
+
+
+      <script src="js/main.js"></script>
+    </body>
+</html>
